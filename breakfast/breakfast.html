@@ -1,0 +1,32 @@
+<head>
+  <title>breakfast</title>
+  </script>
+</head>
+
+<body>
+  {{> loginButtons}}
+</body>
+
+<template name="home">
+<h1>Hello World</h1>
+<button>Test it!</button>
+<p><a href="/foo">Not found?</a></p>
+</template>
+
+<template name="test">
+<h1>Test successful!</h1>
+<p><a href="{{pathFor 'home'}}">Go back...</a></p>
+</template>
+
+<template name="notFound">
+<h1>Not found</h1>
+</template>
+
+<template name="loading">
+<h1>Loading</h1>
+</template>
+
+<template name="layout">
+<hr/>
+<div>{{> yield}}</div>
+</template>
