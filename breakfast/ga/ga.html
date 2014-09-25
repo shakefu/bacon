@@ -16,24 +16,20 @@ ga('create', 'UA-55163148-1', {cookieDomain: 'none'})
   </div>
 </div>
 <div class="row">
-  <div class="centered eight columns">
-    <div class="row">
-      <div class="two columns">
-        <h4>Fields</h4>
-        <form id="ga">
-          {{# each params}}
-          <div class="field">
-            <input class="input" type="text" name='param' value="{{value}}">
-          </div>
-          {{/each}}
-          <div class="medium success btn"><a href="#">Submit</a></div>
-        </form>
+  <div class="push_two two columns">
+    <h4>Fields</h4>
+    <form id="ga">
+      {{# each params}}
+      <div class="field">
+        <input class="input" type="text" name='param' value="{{value}}">
       </div>
-      <div class="five columns push_one">
-        <h4>Javascript</h4>
-        <code class="code">{{ js }}</code>
-      </div>
-    </div>
+      {{/each}}
+      <div class="medium success btn"><a href="#">Submit</a></div>
+    </form>
+  </div>
+  <div class="seven columns push_one">
+    <h4>Javascript</h4>
+    <code class="code">{{ js }}</code>
   </div>
 </div>
 </template>

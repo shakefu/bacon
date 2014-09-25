@@ -17,4 +17,6 @@ Links I want to find later.
 ### Project related
 
 * [Gumby](http://gumbyframework.com/)
+* [Google Analytics Debugger](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna)
+* [MFP API](http://www.myfitnesspal.com/api)
 

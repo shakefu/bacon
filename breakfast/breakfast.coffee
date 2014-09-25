@@ -1,18 +1,31 @@
 Router.configure
   layoutTemplate: 'layout'
   loadingTemplate: 'loading'
+  onAfterAction: ->
+    console.log "On page: #{window.location.pathname}"
+    # ga 'send', 'pageview'
 
 Router.map ->
-  @route 'home', path: '/'
+  @route 'home',
+    path: '/'
+    onBeforeAction: -> Session.set 'layout.homeLink', false
 
 
 if Meteor.isClient
+  show = (toggle) -> Session.equals toggle, true
+
+  ###
   # Home template
-  home = Template.home
-  home.apps = -> [{
+  ###
+  Template.home.apps = -> [{
     name: "Google Analytics"
     id: "ga"
   }]
+
+  ###
+  # Layout template
+  ###
+  Template.layout.homeLink = -> show 'layout.homeLink'
 
 
 if Meteor.isServer

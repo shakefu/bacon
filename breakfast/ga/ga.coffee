@@ -2,7 +2,9 @@
 # Routes
 ###
 Router.map ->
-  @route 'ga', path: '/ga'
+  @route 'ga',
+    path: '/ga'
+    onBeforeAction: -> Session.set 'layout.homeLink', true
 
 
 # This module doesn't have any strictly server side code
@@ -33,6 +35,16 @@ handle = (func) -> (event) ->
   func(event)
 
 
+###
+# Increment the given session key
+###
+increment = (key) ->
+  val = Session.get key
+  val = (val or 0) + 1
+  Session.set key, val
+  val
+
+
 ###########################
 # Google Analytics template
 ###########################
@@ -61,6 +73,7 @@ Template.ga.js = ->
 Template.ga.events
   'click .btn': handle (e) ->
     Session.set 'ga.params', $('#ga').serializeArray()
+    console.log "ga", getParams()
     ga.apply ga, getParams()
 
 

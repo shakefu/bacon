@@ -34,11 +34,23 @@
 </template>
 
 <template name="layout">
+{{#if homeLink }}
+<hr/>
+<div class="row">
+  <div class="two columns">
+    <div class="medium primary btn">
+      <a href="{{pathFor 'home'}}">Home</a>
+    </div>
+  </div>
+</div>
+<hr/>
+{{/if}}
 <div class="row">{{> yield}}</div>
 <hr/>
 <div class="row">
-  <div class="push_eight four columns">
+  <div class="push_seven three columns">
   {{> loginButtons}}
   </div>
 </div>
+<hr/>
 </template>
