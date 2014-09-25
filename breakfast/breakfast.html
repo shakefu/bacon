@@ -4,22 +4,29 @@
 </head>
 
 <body>
-  {{> loginButtons}}
 </body>
 
 <template name="home">
-<h1>Hello World</h1>
-<button>Test it!</button>
-<p><a href="/foo">Not found?</a></p>
-</template>
-
-<template name="test">
-<h1>Test successful!</h1>
-<p><a href="{{pathFor 'home'}}">Go back...</a></p>
+<div class="row">
+  <div class="centered six columns text-center">
+    <h1>Welcome to the Bacon Breakfast!</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="centered six columns">
+    <h3>Apps</h3>
+    <ul>
+      {{# each apps }}
+      <li><a href="{{pathFor id}}">{{name}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
 </template>
 
 <template name="notFound">
 <h1>Not found</h1>
+<p><a href="javascript:window.location.back()">Go back</a></p>
 </template>
 
 <template name="loading">
@@ -27,6 +34,11 @@
 </template>
 
 <template name="layout">
+<div class="row">{{> yield}}</div>
 <hr/>
-<div>{{> yield}}</div>
+<div class="row">
+  <div class="push_eight four columns">
+  {{> loginButtons}}
+  </div>
+</div>
 </template>

@@ -4,13 +4,15 @@ Router.configure
 
 Router.map ->
   @route 'home', path: '/'
-  @route 'test'
-  @route 'notFound', path: '*'
 
 
 if Meteor.isClient
-  Template.home.events 'click button': -> Router.go 'test'
-  Template.test.events 'click button': -> Router.go 'home'
+  # Home template
+  home = Template.home
+  home.apps = -> [{
+    name: "Google Analytics"
+    id: "ga"
+  }]
 
 
 if Meteor.isServer

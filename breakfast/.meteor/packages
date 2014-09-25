@@ -10,4 +10,5 @@ coffeescript
 accounts-ui
 accounts-twitter
 iron:router
+mquandalle:bower
 
