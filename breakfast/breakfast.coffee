@@ -1,9 +1,6 @@
 Router.configure
   layoutTemplate: 'layout'
   loadingTemplate: 'loading'
-  onAfterAction: ->
-    console.log "On page: #{window.location.pathname}"
-    # ga 'send', 'pageview'
 
 Router.map ->
   @route 'home',

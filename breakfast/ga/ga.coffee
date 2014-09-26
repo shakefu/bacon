@@ -1,6 +1,18 @@
 ###
 # Routes
 ###
+Router.configure
+  onAfterAction: ->
+    console.log "On page: #{window.location.pathname}"
+    tryGa = ->
+      if not ga?
+        setTimeout tryGa, 10
+      ga 'send', 'pageview',
+        page: window.location.pathname
+        location: window.location.toString()
+
+    tryGa()
+
 Router.map ->
   @route 'ga',
     path: '/ga'

@@ -13,6 +13,7 @@ Links I want to find later.
 * [Bower](https://atmospherejs.com/mquandalle/bower)
 * [Google Analytics](https://github.com/datariot/meteor-ganalytics)
 * [Reactive Forms](http://www.neo.com/2014/05/23/reactive-forms-in-meteor-js)
+* [Laika](http://arunoda.github.io/laika/)
 
 ### Project related
 
