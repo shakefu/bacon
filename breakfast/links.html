@@ -1,0 +1,16 @@
+<template name="links">
+<div class="row">
+  <div class="columns eight centered">
+    <h2>All the Links</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="columns eight centered">
+    {{# each all_links }}
+    <ul>
+      <li><a href="{{url}}">{{text}}</a>{{#if description}} - {{description}}{{/if}}</li>
+    </ul>
+    {{/each}}
+  </div>
+</div>
+</template>

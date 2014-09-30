@@ -1,11 +1,12 @@
 Router.configure
   layoutTemplate: 'layout'
   loadingTemplate: 'loading'
+  onBeforeAction: ->
+    # Toggle the top menu based on the page
+    Session.set 'layout.homeLink', @route.name != 'home'
 
 Router.map ->
-  @route 'home',
-    path: '/'
-    onBeforeAction: -> Session.set 'layout.homeLink', false
+  @route 'home', path: '/'
 
 
 if Meteor.isClient
@@ -14,10 +15,10 @@ if Meteor.isClient
   ###
   # Home template
   ###
-  Template.home.apps = -> [{
-    name: "Google Analytics"
-    id: "ga"
-  }]
+  Template.home.apps = -> [
+    {name: "Google Analytics", id: "ga"},
+    {name: "Links", id: "links"}
+  ]
 
   ###
   # Layout template

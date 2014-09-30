@@ -3,6 +3,8 @@
 ###
 Router.configure
   onAfterAction: ->
+    # This action sends pageview to GA with the correct location, since it
+    # doesn't always pick up the pushState location correctly
     console.log "On page: #{window.location.pathname}"
     tryGa = ->
       if not ga?
@@ -12,11 +14,10 @@ Router.configure
         location: window.location.toString()
 
     tryGa()
+    @next()
 
 Router.map ->
-  @route 'ga',
-    path: '/ga'
-    onBeforeAction: -> Session.set 'layout.homeLink', true
+  @route 'ga', path: '/ga'
 
 
 # This module doesn't have any strictly server side code
