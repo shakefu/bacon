@@ -14,7 +14,7 @@ Router.configure
         location: window.location.toString()
 
     tryGa()
-    @next()
+
 
 Router.map ->
   @route 'ga', path: '/ga'
@@ -23,39 +23,6 @@ Router.map ->
 # This module doesn't have any strictly server side code
 if Meteor.isServer
   return
-
-
-###
-# Client
-###
-
-###
-# Helper to make it easy to delay a function with CoffeeScript syntax.
-###
-delay = (timeout, func) ->
-  if timeout instanceof Function
-    func = timeout
-    timeout = 0
-  setTimeout func, timeout
-
-
-###
-# Event handler wrapper to stop normal event handling easily.
-###
-handle = (func) -> (event) ->
-  event.preventDefault()
-  event.stopPropagation()
-  func(event)
-
-
-###
-# Increment the given session key
-###
-increment = (key) ->
-  val = Session.get key
-  val = (val or 0) + 1
-  Session.set key, val
-  val
 
 
 ###########################
