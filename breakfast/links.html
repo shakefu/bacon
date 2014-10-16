@@ -1,16 +1,69 @@
+<head>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/freebase/suggest/4_2/suggest.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/freebase/suggest/4_2/suggest.min.js"></script>
+</head>
 <template name="links">
 <div class="row">
   <div class="columns eight centered">
     <h2>All the Links</h2>
   </div>
 </div>
-<div class="row">
+<div class="row link-edit">
   <div class="columns eight centered">
-    {{# each all_links }}
-    <ul>
-      <li><a href="{{url}}">{{text}}</a>{{#if description}} - {{description}}{{/if}}</li>
-    </ul>
-    {{/each}}
+    <div class="row link-status">
+      {{#if editing._id}}
+      {{#with editing}}
+      {{#if editing.text}}New link - {{> link}}{{else}}Editing new link...{{/if}}
+      {{/with}}
+      {{else}}
+      <a href="#" class="link-new">Create new link</a>
+      {{/if}}
+    </div>
+    <div class="row">
+      <form class="link-form" onsubmit="return false">
+        {{#with editing}}
+        <div class="columns four field">
+          <input type="text" value="{{editing.text}}" placeholder="Name" name="text" class="input link-text" required/>
+        </div>
+        <div class="columns eight field">
+          <input type="text" value="{{editing.description}}" placeholder="Description" name="description" class="input link-desc"/>
+        </div>
+        <div class="row field">
+          <input type="url" value="{{editing.url}}" placeholder="URL" class="input link-url" name="url" required/>
+        </div>
+        <div class="row field">
+          <input type="text" placeholder="Add tags..." class="input link-tags"/>
+        </div>
+        <div class="row">
+          {{ edit_text_tags }}&nbsp;
+        </div>
+        {{/with}}
+        <input type="submit" class="hidden"/>
+      </form>
+    </div>
   </div>
 </div>
+<div class="row">
+  <div class="columns eight centered">
+    <ul>
+    {{# each all_links }}
+      <li>{{> link}}</li>
+    {{/each}}
+    </ul>
+  </div>
+</div>
+</template>
+
+<template name="link">
+{{#if url}}
+<a href="{{url}}">{{> linkText}}</a>
+{{else}}
+{{> linkText}}
+{{/if}}
+{{#if description}} - {{description}}{{/if}}
+</template>
+
+<template name="linkText">
+{{#if text}}{{text}}{{else}}{{_id}}{{/if}}
 </template>
