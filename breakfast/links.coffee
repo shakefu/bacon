@@ -22,6 +22,7 @@ if Meteor.isServer
   Links.allow
     insert: -> true
     update: -> true
+    remove: -> true
 
   Meteor.publish 'all-links', -> Links.find()
 
@@ -40,11 +41,12 @@ if Meteor.isServer
 Meteor.subscribe 'all-links'
 
 currentlyEditing = ->
-  Session.get 'link.currentlyEditing'
+  doc = Session.get 'link.currentlyEditing'
+  doc or {}
 
 
 createNew = ->
-  return if currentlyEditing()
+  return if Session.get 'link.currentlyEditing'
   doc = {}
   doc._id = Links.insert doc
   Session.set 'link.currentlyEditing', doc
@@ -74,7 +76,8 @@ Template.links.events =
     updateDoc Template.instance()
 
   'submit .link-edit .link-form': (event) ->
-
+    updateDoc Template.instance()
+    Session.set 'link.currentlyEditing'
 
 Template.links.all_links = -> Links.find()
 
@@ -83,7 +86,13 @@ Template.links.rendered = ->
     .suggest key: 'AIzaSyATgp60c0YT8qc8MdMmxulPrI5e4C6z_dg'
     .bind 'fb-select', (event, data) ->
       console.log event
-      # throw err if err
       console.log data
 
 Template.links.editing = currentlyEditing
+
+
+Template.link.events = 'click .link-delete': ->
+  self = $ event.target
+  console.log self.data 'id'
+  Links.remove _id: self.data 'id'
+

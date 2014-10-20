@@ -17,20 +17,20 @@
       {{#if editing.text}}New link - {{> link}}{{else}}Editing new link...{{/if}}
       {{/with}}
       {{else}}
-      <a href="#" class="link-new">Create new link</a>
+      Start editing to create a new link.
       {{/if}}
     </div>
     <div class="row">
       <form class="link-form" onsubmit="return false">
         {{#with editing}}
         <div class="columns four field">
-          <input type="text" value="{{editing.text}}" placeholder="Name" name="text" class="input link-text" required/>
+          <input type="text" value="{{text}}" placeholder="Name" name="text" class="input link-text" required/>
         </div>
         <div class="columns eight field">
-          <input type="text" value="{{editing.description}}" placeholder="Description" name="description" class="input link-desc"/>
+          <input type="text" value="{{description}}" placeholder="Description" name="description" class="input link-desc"/>
         </div>
         <div class="row field">
-          <input type="url" value="{{editing.url}}" placeholder="URL" class="input link-url" name="url" required/>
+          <input type="url" value="{{url}}" placeholder="URL" class="input link-url" name="url" required/>
         </div>
         <div class="row field">
           <input type="text" placeholder="Add tags..." class="input link-tags"/>
@@ -56,6 +56,7 @@
 </template>
 
 <template name="link">
+<a href class="link-delete" data-id="{{_id}}">[delete]</a>
 {{#if url}}
 <a href="{{url}}">{{> linkText}}</a>
 {{else}}
