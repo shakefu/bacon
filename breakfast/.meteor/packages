@@ -4,11 +4,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 coffeescript
 accounts-ui
 accounts-twitter
 iron:router
 mquandalle:bower
-
