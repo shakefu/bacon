@@ -17,30 +17,11 @@
       {{#if editing.text}}New link - {{> link}}{{else}}Editing new link...{{/if}}
       {{/with}}
       {{else}}
-      Start editing to create a new link.
+      Create a new link...
       {{/if}}
     </div>
     <div class="row">
-      <form class="link-form" onsubmit="return false">
-        {{#with editing}}
-        <div class="columns four field">
-          <input type="text" value="{{text}}" placeholder="Name" name="text" class="input link-text" required/>
-        </div>
-        <div class="columns eight field">
-          <input type="text" value="{{description}}" placeholder="Description" name="description" class="input link-desc"/>
-        </div>
-        <div class="row field">
-          <input type="url" value="{{url}}" placeholder="URL" class="input link-url" name="url" required/>
-        </div>
-        <div class="row field">
-          <input type="text" placeholder="Add tags..." class="input link-tags"/>
-        </div>
-        <div class="row">
-          {{ edit_text_tags }}&nbsp;
-        </div>
-        {{/with}}
-        <input type="submit" class="hidden"/>
-      </form>
+      {{> linkForm}}
     </div>
   </div>
 </div>
@@ -55,6 +36,24 @@
 </div>
 </template>
 
+<template name="linkForm">
+  <form data-doc='new-link' onsubmit="return false">
+    <div class="row field">
+      <input type="url" placeholder="URL" class="input" name="url" value="{{doc.url}}" required/>
+    </div>
+    <div class="row field">
+      <input type="text" placeholder="What is it?" name="text" value="{{doc.text}}" class="input" required/>
+    </div>
+    <div class="row field">
+      <input type="text" placeholder="Add tags..." class="input"/>
+    </div>
+    <div class="row">
+      {{ edit_text_tags }}&nbsp;
+    </div>
+    <input type="submit" class="hidden"/>
+  </form>
+</template>
+
 <template name="link">
 <a href class="link-delete" data-id="{{_id}}">[delete]</a>
 {{#if url}}
@@ -62,9 +61,8 @@
 {{else}}
 {{> linkText}}
 {{/if}}
-{{#if description}} - {{description}}{{/if}}
 </template>
 
 <template name="linkText">
-{{#if text}}{{text}}{{else}}{{_id}}{{/if}}
+{{#if text}}{{text}}{{else}}{{url}}{{/if}}
 </template>
