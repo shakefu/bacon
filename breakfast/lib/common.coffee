@@ -22,10 +22,10 @@ exports.delay = (timeout, func) ->
 ###
 # Event handler wrapper to stop normal event handling easily.
 ###
-exports.handle = (func) -> (event) ->
+exports.handle = (func) -> (event, instance) ->
   event.preventDefault()
   event.stopPropagation()
-  func(event)
+  func(event, instance)
 
 
 ###

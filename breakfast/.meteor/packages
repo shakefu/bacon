@@ -10,3 +10,4 @@ accounts-ui
 accounts-twitter
 iron:router
 mquandalle:bower
+reactive-var
